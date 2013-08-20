@@ -1,0 +1,12 @@
+2013-03-22 22:17:52.317 MobileCalculator[22262:c07] Digit pressed: 8
+2013-03-22 22:18:01.606 MobileCalculator[22262:c07] Digit pressed: 5
+2013-03-22 22:18:02.048 MobileCalculator[22262:c07] Digit pressed: 8
+2013-03-22 22:18:02.628 MobileCalculator[22262:c07] Digit pressed: 9
+2013-03-22 22:18:03.408 MobileCalculator[22262:c07] Digit pressed: 6
+2013-03-22 22:18:04.332 MobileCalculator[22262:c07] Digit pressed: 8
+2013-03-22 22:18:04.726 MobileCalculator[22262:c07] Digit pressed: 7
+2013-03-22 22:18:05.144 MobileCalculator[22262:c07] Digit pressed: 4
+2013-03-22 22:18:05.786 MobileCalculator[22262:c07] Digit pressed: 5
+2013-03-22 22:18:06.187 MobileCalculator[22262:c07] Digit pressed: 8
+2013-03-22 22:18:06.640 MobileCalculator[22262:c07] Digit pressed: 9
+2013-03-22 22:18:07.058 MobileCalculator[22262:c07] Digit pressed: 6

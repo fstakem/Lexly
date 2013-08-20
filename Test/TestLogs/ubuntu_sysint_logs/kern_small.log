@@ -1,0 +1,14 @@
+Jul 11 09:51:54 ubuntu kernel: imklog 5.8.11, log source = /proc/kmsg started.
+Jul 11 09:51:54 ubuntu kernel: [    0.000000] Initializing cgroup subsys cpuset
+Jul 11 09:51:54 ubuntu kernel: [    0.000000] Initializing cgroup subsys cpu
+Jul 11 09:51:54 ubuntu kernel: [    0.000000] Linux version 3.8.0-19-generic (buildd@allspice) (gcc version 4.7.3 (Ubuntu/Linaro 4.7.3-1ubuntu1) ) #29-Ubuntu SMP Wed Apr 17 18:16:28 UTC 2013 (Ubuntu 3.8.0-19.29-generic 3.8.8)
+Jul 11 09:51:54 ubuntu kernel: [    0.000000] Command line: BOOT_IMAGE=/boot/vmlinuz-3.8.0-19-generic root=UUID=47191ad3-12f8-4c65-b8b1-40130354198e ro quiet splash vt.handoff=7
+Jul 11 09:51:54 ubuntu kernel: [    0.000000] KERNEL supported cpus:
+Jul 11 09:51:54 ubuntu kernel: [    0.000000]   Intel GenuineIntel
+Jul 11 09:51:54 ubuntu kernel: [    0.000000]   AMD AuthenticAMD
+Jul 11 09:51:54 ubuntu kernel: [    0.000000]   Centaur CentaurHauls
+Jul 11 11:36:43 ubuntu kernel: [ 3865.011692] SGI XFS with ACLs, security attributes, realtime, large block/inode numbers, no debug enabled
+Jul 11 11:36:43 ubuntu kernel: [ 3865.017598] Request for unknown module key 'Magrathea: Glacier signing key: 4fb521df0b0fa81f775431361b8076d5d0f1869a' err -11
+Jul 11 11:36:43 ubuntu kernel: [ 3865.018604] JFS: nTxBlock = 8192, nTxLock = 65536
+Jul 11 11:36:43 ubuntu kernel: [ 3865.029431] Request for unknown module key 'Magrathea: Glacier signing key: 4fb521df0b0fa81f775431361b8076d5d0f1869a' err -11
+

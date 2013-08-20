@@ -1,0 +1,29 @@
+Jul 11 09:51:14 ubuntu kernel: imklog 5.8.11, log source = /proc/kmsg started.
+Jul 11 09:51:15 ubuntu rsyslogd: [origin software="rsyslogd" swVersion="5.8.11" x-pid="465" x-info="http://www.rsyslog.com"] start
+Jul 11 09:51:16 ubuntu rsyslogd: rsyslogd's groupid changed to 103
+Jul 11 09:51:17 ubuntu kernel: [    0.000000] Initializing cgroup subsys cpuset
+Jul 11 09:51:18 ubuntu kernel: [    0.000000] Initializing cgroup subsys cpu
+Jul 11 09:51:19 ubuntu kernel: [    0.000000] Linux version 3.8.0-19-generic (buildd@allspice) (gcc version 4.7.3 (Ubuntu/Linaro 4.7.3-1ubuntu1) ) #29-Ubuntu SMP Wed Apr 17 18:16:28 UTC 2013 (Ubuntu 3.8.0-19.29-generic 3.8.8)
+Jul 11 09:51:20 ubuntu kernel: [    0.000000] BIOS-e820: [mem 0x0000000000000000-0x000000000009fbff] usable
+Jul 11 09:51:21 ubuntu kernel: [    0.000000] BIOS-e820: [mem 0x000000000009fc00-0x000000000009ffff] reserved
+Jul 11 09:51:22 ubuntu kernel: [    0.000000] reg 0, base: 0GB, range: 2GB, type WB
+Jul 11 09:51:23 ubuntu kernel: [    0.000000] reg 1, base: 2GB, range: 512MB, type WB
+Jul 11 09:51:24 ubuntu kernel: [    0.000000] reg 2, base: 2560MB, range: 256MB, type WB
+Jul 11 09:51:25 ubuntu NetworkManager[887]:    SCPlugin-Ifupdown: init!
+Jul 11 09:51:26 ubuntu NetworkManager[887]:    SCPlugin-Ifupdown: update_system_hostname
+Jul 11 09:51:27 ubuntu NetworkManager[887]:    SCPluginIfupdown: management mode: unmanaged
+Jul 11 09:51:28 ubuntu NetworkManager[887]: <info> modem-manager is now available
+Jul 11 09:51:29 ubuntu NetworkManager[887]: <info> monitoring kernel firmware directory '/lib/firmware'.
+Jul 11 09:51:20 ubuntu NetworkManager[887]: <info> WiFi hardware radio set enabled
+Jul 11 09:51:21 ubuntu NetworkManager[887]: <info> WiFi enabled by radio killswitch; enabled by state file
+Jul 11 09:51:22 ubuntu NetworkManager[887]: <error> [1373550717.998911] [nm-dns-dnsmasq.c:402] update(): dnsmasq owner not found on bus: Could not get owner of name 'org.freedesktop.NetworkManager.dnsmasq': no such name
+Jul 11 09:51:23 ubuntu NetworkManager[887]: <warn> DNS: plugin dnsmasq update failed
+Jul 11 09:51:24 ubuntu NetworkManager[887]: <info> Writing DNS information to /sbin/resolvconf
+Jul 11 09:51:25 ubuntu dbus[501]: [system] Successfully activated service 'org.freedesktop.ColorManager'
+Jul 11 09:51:26 ubuntu colord: Profile added: icc-0bd9f292ce7882699e93ff844071783d
+Jul 11 09:51:27 ubuntu colord: Profile added: icc-adb5ebe2a14b98599a170cd3ab54fe76
+Jul 11 11:35:28  dbus[501]: last message repeated 9 times
+Jul 11 11:37:29 ubuntu kernel: [    0.000000] Initializing cgroup subsys cpuset
+Jul 11 11:37:29 ubuntu kernel: [    0.000000] Initializing cgroup subsys cpu
+
+

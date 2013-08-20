@@ -1,0 +1,14 @@
+02-23 10:13:32.464    37    37 D dalvikvm: WAIT_FOR_CONCURRENT_GC blocked 0ms
+02-23 10:13:32.544    37    37 D dalvikvm: GC_EXPLICIT freed <1K, 1% free 7952K/8003K, paused 3ms+4ms, total 86ms
+02-23 10:13:32.553    37    37 I dalvikvm: System server process 160 has been created
+02-23 10:13:32.584    37    37 I Zygote  : Accepting command socket connections
+02-23 10:13:33.223   160   160 I SensorService: Goldfish 3-axis Accelerometer
+02-23 10:13:33.223   160   160 I SensorService: Goldfish 3-axis Magnetic field sensor
+02-23 10:13:36.564   160   177 I Installer: connecting...
+02-23 10:13:45.793   233   233 E Trace   : error opening trace file: No such file or directory (2)
+02-23 10:13:54.103   249   249 D         : [ApnContext:cbs] set reason as dataEnabled,current state IDLE
+02-23 10:13:54.103   249   249 D         : [ApnContext:cbs] setRetryCount: 0
+02-23 10:14:01.353    31    61 I /system/bin/fsck_msdos: Attempting to allocate 79 KB for FAT
+02-23 10:13:55.623    31    61 I Vold    : /dev/block/vold/179:0 being considered for volume sdcard
+02-23 10:13:55.623    31    61 D Vold    : Volume sdcard state changing 1 (Idle-Unmounted) -> 3 (Checking)
+02-23 10:13:55.633   160   199 D MountService: volume state changed for /mnt/sdcard (unmounted -> checking)
