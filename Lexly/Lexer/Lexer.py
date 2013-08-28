@@ -99,8 +99,9 @@ class Lexer(StateMachineNode):
                 sub_lexer.start(sub_token)
             else:
                 error = ParsingError('No lexer found for the token.', deepcopy(self))
-                self.logger.error(error.to_pretty_json())
-                self.errors.append(error)   
+                self.errors.append(error) 
+                if globals.debug_lexer:
+                    self.logger.error(error.to_pretty_json())
                   
     def reset(self):
         if len(self.children) != 0:
@@ -118,8 +119,9 @@ class Lexer(StateMachineNode):
                 
         if not self.current_state.isFinalState():
             error = ParsingError('End of the stream reached before the state machine had completed.', deepcopy(self))
-            self.logger.error(error.to_pretty_json())
-            self.errors.append(error)
+            self.errors.append(error) 
+            if globals.debug_lexer:
+                self.logger.error(error.to_pretty_json())
         
     def handleNewData(self):
         if globals.debug_lexer:    
@@ -134,12 +136,14 @@ class Lexer(StateMachineNode):
     def appendToken(self, sub_token):
         if len(sub_token.data) == 0 and sub_token.data_present == Token.ALWAYS_DATA:
             error = ParsingError('No data found in the token.', deepcopy(self))
-            self.logger.error(error.to_pretty_json())
-            self.errors.append(error)
+            self.errors.append(error) 
+            if globals.debug_lexer:
+                self.logger.error(error.to_pretty_json())
         elif len(sub_token.data) > 0 and sub_token.data_present == Token.NEVER_DATA:
             error = ParsingError('Token has data when specified not to.', deepcopy(self))
-            self.logger.error(error.to_pretty_json())
-            self.errors.append(error)
+            self.errors.append(error) 
+            if globals.debug_lexer:
+                self.logger.error(error.to_pretty_json())
         elif sub_token.data_present == Token.NEVER_DATA:
             if globals.debug_lexer:
                 Lexer.logger.debug('Found token:\n%s' % (sub_token.to_pretty_json()))

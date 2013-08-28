@@ -1,0 +1,560 @@
+{
+	"name": "Ubuntu Syslog",
+	"created": "8/22/13",
+	"author": "Fred Stakem",
+	
+	"raw_event_separator" :
+	{
+		"name": "Syslog Separator",
+		"separator": "\n"
+	},
+	
+	"lexers":
+	[
+		{
+			"name": "Event Lexer",
+			"lexer_type": "event",
+			"sub_lexers": [ "datetime", "source", "msg"],
+			"root": "true",
+			"start_state": "Event State"
+		},
+		{
+			"name": "Datetime Lexer",
+			"lexer_type": "datetime",
+			"sub_lexers": [ "inner_datetime", "month", "day", "hour", "minute", "second" ],
+			"root": "false",
+			"start_state": "Inner Datetime State"
+			
+		},
+		{
+			"name": "Source Lexer",
+			"lexer_type": "source",
+			"sub_lexers": [ "inner_source", "component", "component_id" ],
+			"root": "false",
+			"start_state": "Inner Source State" 
+		},
+		{
+			"name": "Msg Lexer",
+			"lexer_type": "msg",
+			"sub_lexers": [ "inner_msg", "level", "sub_msg" ],
+			"root": "false",
+			"start_state": "Inner Msg State"
+		},
+		{
+			"name": "Inner Datetime Lexer",
+			"lexer_type": "inner_datetime",
+			"sub_lexers": [],
+			"root": "false",
+			"start_state": ""
+		},
+		{
+			"name": "Month Lexer",
+			"lexer_type": "month",
+			"sub_lexers": [],
+			"root": "false",
+			"start_state": ""
+		},
+		{
+			"name": "Day Lexer",
+			"lexer_type": "day",
+			"sub_lexers": [],
+			"root": "false",
+			"start_state": ""
+		},
+		{
+			"name": "Hour Lexer",
+			"lexer_type": "hour",
+			"sub_lexers": [],
+			"root": "false",
+			"start_state": ""
+		},
+		{
+			"name": "Minute Lexer",
+			"lexer_type": "minute",
+			"sub_lexers": [],
+			"root": "false",
+			"start_state": ""
+		},
+		{
+			"name": "Second Lexer",
+			"lexer_type": "second",
+			"sub_lexers": [],
+			"root": "false",
+			"start_state": ""
+		},
+		{
+			"name": "Inner Source Lexer",
+			"lexer_type": "inner_source",
+			"sub_lexers": [],
+			"root": "false",
+			"start_state": ""
+		},
+		{
+			"name": "Component Lexer",
+			"lexer_type": "component",
+			"sub_lexers": [],
+			"root": "false",
+			"start_state": ""
+		},
+		{
+			"name": "Component ID Lexer",
+			"lexer_type": "component_id",
+			"sub_lexers": [],
+			"root": "false",
+			"start_state": ""
+		},
+		{
+			"name": "Inner Msg Lexer",
+			"lexer_type": "inner_msg",
+			"sub_lexers": [],
+			"root": "false",
+			"start_state": ""
+		},
+		{
+			"name": "Level Lexer",
+			"lexer_type": "level",
+			"sub_lexers": [],
+			"root": "false",
+			"start_state": ""
+		},
+		{
+			"name": "Sub Msg Lexer",
+			"lexer_type": "sub_msg",
+			"sub_lexers": [],
+			"root": "false",
+			"start_state": ""
+		}
+	],
+	
+	"lexer_states":
+	[
+		{
+			"name": "Event State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "event",
+				"data": "never",
+				"atomic": "false"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Event to Datetime Transition",
+					"pattern": ".",
+					"end_offset": 0,
+					"start_offset": -1,
+					"strip": "true",
+					"next_state": "Datetime State"
+				}
+			]
+		},
+		{
+			"name": "Datetime State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "datetime",
+				"data": "always",
+				"atomic": "false"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Datetime to Source Transition",
+					"pattern": "\\d{2}:\\d{2}:\\d{2}",
+					"end_offset": 8,
+					"start_offset": 8,
+					"strip": "true",
+					"next_state": "Source State"
+				}
+			]
+		},
+		{
+			"name": "Source State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "source",
+				"data": "always",
+				"atomic": "false"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Source to Msg Transition",
+					"pattern": ":",
+					"end_offset": 0,
+					"start_offset": 1,
+					"strip": "true",
+					"next_state": "Msg State"
+				}
+			]
+		},
+		{
+			"name": "Msg State",
+			"final_state": "true",
+			"token": 
+			{
+				"data_type": "msg",
+				"data": "sometimes",
+				"atomic": "false"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Msg to End Transition",
+					"pattern": "EOS",
+					"end_offset": 0,
+					"start_offset": 0,
+					"strip": "true",
+					"next_state": "end"
+				}
+			]
+		},
+		{
+			"name": "Inner Datetime State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "datetime",
+				"data": "never",
+				"atomic": "false"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Inner Datetime to Month Transition",
+					"pattern": ".",
+					"end_offset": 0,
+					"start_offset": -1,
+					"strip": "true",
+					"next_state": "Month State"
+				}
+			]
+		},
+		{
+			"name": "Month State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "month",
+				"data": "always",
+				"atomic": "true"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Month to Day Transition",
+					"pattern": "\\s+",
+					"end_offset": 0,
+					"start_offset": 1,
+					"strip": "true",
+					"next_state": "Day State"
+				}
+			]
+		},
+		{
+			"name": "Day State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "day",
+				"data": "always",
+				"atomic": "true"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Day to Hour Transition",
+					"pattern": "\\s+",
+					"end_offset": 0,
+					"start_offset": 1,
+					"strip": "true",
+					"next_state": "Hour State"
+				}
+			]
+		},
+		{
+			"name": "Hour State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "hour",
+				"data": "always",
+				"atomic": "true"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Hour to Minute Transition",
+					"pattern": ":",
+					"end_offset": 0,
+					"start_offset": 1,
+					"strip": "false",
+					"next_state": "Minute State"
+				}
+			]
+		},
+		{
+			"name": "Minute State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "minute",
+				"data": "always",
+				"atomic": "true"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Minute to Second Transition",
+					"pattern": ":",
+					"end_offset": 0,
+					"start_offset": 1,
+					"strip": "false",
+					"next_state": "Second State"
+				}
+			]
+		},
+		{
+			"name": "Second State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "second",
+				"data": "always",
+				"atomic": "true"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Second to End Transition",
+					"pattern": "EOS",
+					"end_offset": 0,
+					"start_offset": 0,
+					"strip": "false",
+					"next_state": "end"
+				}
+			]
+		},
+		{
+			"name": "Inner Source State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "inner_source",
+				"data": "never",
+				"atomic": "false"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Inner Source to Component",
+					"pattern": ".",
+					"end_offset": 0,
+					"start_offset": -1,
+					"strip": "false",
+					"next_state": "Component State"
+				}
+			]
+		},
+		{
+			"name": "Component State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "component",
+				"data": "always",
+				"atomic": "true"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Component to End Transition",
+					"pattern": "EOS",
+					"end_offset": 0,
+					"start_offset": 0,
+					"strip": "true",
+					"next_state": "end"
+				},
+				{
+					"name": "Component to Component ID Transition",
+					"pattern": "\\[",
+					"end_offset": 0,
+					"start_offset": 1,
+					"strip": "true",
+					"next_state": "Component ID State"
+				}
+			]
+		},
+		{
+			"name": "Component ID State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "component_id",
+				"data": "sometimes",
+				"atomic": "true"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Component ID to End",
+					"pattern": "EOS",
+					"end_offset": -1,
+					"start_offset": 0,
+					"strip": "true",
+					"next_state": "end"
+				}
+			]
+		},
+		{
+			"name": "Inner Msg State",
+			"final_state": "true",
+			"token": 
+			{
+				"data_type": "inner_msg",
+				"data": "never",
+				"atomic": "false"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Inner Msg to Level Transition",
+					"pattern": "[<]",
+					"end_offset": -1,
+					"start_offset": 1,
+					"strip": "false",
+					"next_state": "Level State"
+				},
+				{
+					"name": "Inner Msg to Sub Msg Transition",
+					"pattern": "[^<]",
+					"end_offset": -1,
+					"start_offset": 0,
+					"strip": "false",
+					"next_state": "Sub Msg State"
+				},
+				{
+					"name": "Inner Msg to End Transition",
+					"pattern": "EOS",
+					"end_offset": 0,
+					"start_offset": 1,
+					"strip": "true",
+					"next_state": "end"
+				}
+			]
+		},
+		{
+			"name": "Level State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "level",
+				"data": "sometimes",
+				"atomic": "true"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Level to Sub Msg Transition",
+					"pattern": ">",
+					"end_offset": 0,
+					"start_offset": 1,
+					"strip": "true",
+					"next_state": "Sub Msg State"
+				}
+			]
+		},
+		{
+			"name": "Sub Msg State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "sub_msg",
+				"data": "sometimes",
+				"atomic": "true"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Sub Msg to End Transition",
+					"pattern": "EOS",
+					"end_offset": 0,
+					"start_offset": 1,
+					"strip": "true",
+					"next_state": "end"
+				}
+			]
+		}
+	],
+	
+	"parsers":
+	[
+		{
+			"name": "Event Parser",
+			"parser_type": "event",
+			"parser_class": "Parser",
+			"root": "true",
+			"sub_parsers": ["datetime", "source", "msg"],
+			"token_names": []
+		},
+		{
+			"name": "Datetime Parser",
+			"parser_type": "datetime",
+			"parser_class": "DatetimeParser",
+			"root": "false",
+			"sub_parsers": [],
+			"token_names": ["month", "day", "hour", "minute", "second"]
+		},
+		{
+			"name": "Source Parser",
+			"parser_type": "source",
+			"parser_class": "Parser",
+			"root": "false",
+			"sub_parsers": ["component", "component_id"],
+			"token_names": []
+		},
+		{
+			"name": "Component Parser",
+			"parser_type": "component",
+			"parser_class": "StrParser",
+			"root": "false",
+			"sub_parsers": [],
+			"token_names": ["component"]
+		},
+		{
+			"name": "Component ID Parser",
+			"parser_type": "component_id",
+			"parser_class": "IntParser",
+			"root": "false",
+			"sub_parsers": [],
+			"token_names": ["component_id"]
+		},
+		{
+			"name": "Msg Parser",
+			"parser_type": "msg",
+			"parser_class": "Parser",
+			"root": "false",
+			"sub_parsers": ["level", "sub_msg"],
+			"token_names": []
+		},
+		{
+			"name": "Level Parser",
+			"parser_type": "level",
+			"parser_class": "StrParser",
+			"root": "false",
+			"sub_parsers": [],
+			"token_names": ["level"]
+		},
+		{
+			"name": "Sub Msg Parser",
+			"parser_type": "sub_msg",
+			"parser_class": "StrParser",
+			"root": "false",
+			"sub_parsers": [],
+			"token_names": ["sub_msg"]
+		}
+	]
+}

@@ -1,0 +1,469 @@
+{
+	"name": "IOS",
+	"created": "8/26/13",
+	"author": "Fred Stakem",
+	
+	"raw_event_separator" :
+	{
+		"name": "Syslog Separator",
+		"separator": "\n"
+	},
+	
+	"lexers":
+	[
+		{
+			"name": "Event Lexer",
+			"lexer_type": "event",
+			"sub_lexers": [ "datetime", "source", "pid", "mach_port", "msg" ],
+			"root": "true",
+			"start_state": "Event State"
+		},
+		{
+			"name": "Datetime Lexer",
+			"lexer_type": "datetime",
+			"sub_lexers": [ "inner_datetime", "year", "month", "day", "hour", "minute", "second", "millisecond" ],
+			"root": "false",
+			"start_state": "Inner Datetime State"
+		},
+		{
+			"name": "Source Lexer",
+			"lexer_type": "source",
+			"sub_lexers": [],
+			"root": "false",
+			"start_state": ""
+		},
+		{
+			"name": "PID Lexer",
+			"lexer_type": "pid",
+			"sub_lexers": [],
+			"root": "false",
+			"start_state": ""
+		},
+		{
+			"name": "Mach Port Lexer",
+			"lexer_type": "mach_port",
+			"sub_lexers": [],
+			"root": "false",
+			"start_state": ""
+		},
+		{
+			"name": "Msg Lexer",
+			"lexer_type": "msg",
+			"sub_lexers": [],
+			"root": "false",
+			"start_state": ""
+		},
+		{
+			"name": "Inner Datetime Lexer",
+			"lexer_type": "inner_datetime",
+			"sub_lexers": [],
+			"root": "false",
+			"start_state": "Inner Datetime State"
+		},
+		{
+			"name": "Year Lexer",
+			"lexer_type": "year",
+			"sub_lexers": [],
+			"root": "false",
+			"start_state": "Year State"
+		},
+		{
+			"name": "Month Lexer",
+			"lexer_type": "month",
+			"sub_lexers": [],
+			"root": "false",
+			"start_state": "Month State"
+		},
+		{
+			"name": "Day Lexer",
+			"lexer_type": "day",
+			"sub_lexers": [],
+			"root": "false",
+			"start_state": "Day State"
+		},
+		{
+			"name": "Hour Lexer",
+			"lexer_type": "hour",
+			"sub_lexers": [],
+			"root": "false",
+			"start_state": "Hour State"
+		},
+		{
+			"name": "Minute Lexer",
+			"lexer_type": "minute",
+			"sub_lexers": [],
+			"root": "false",
+			"start_state": "Minute State"
+		},
+		{
+			"name": "Second Lexer",
+			"lexer_type": "second",
+			"sub_lexers": [],
+			"root": "false",
+			"start_state": "Second State"
+		},
+		{
+			"name": "Millisecond Lexer",
+			"lexer_type": "millisecond",
+			"sub_lexers": [],
+			"root": "false",
+			"start_state": "Millisecond State"
+		}
+	],
+
+	"lexer_states":
+	[
+		{
+			"name": "Event State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "event",
+				"data": "never",
+				"atomic": "false"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Event to Datetime Transition",
+					"pattern": ".",
+					"end_offset": 0,
+					"start_offset": -1,
+					"strip": "true",
+					"next_state": "Datetime State"
+				}
+			]
+		},
+		{
+			"name": "Datetime State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "datetime",
+				"data": "always",
+				"atomic": "false"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Datetime to Source Transition",
+					"pattern": "\\d{3}\\s+",
+					"end_offset": 3,
+					"start_offset": 5,
+					"strip": "true",
+					"next_state": "Source State"
+				}
+			]
+		},
+		{
+			"name": "Source State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "source",
+				"data": "sometimes",
+				"atomic": "true"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Source to PID Transition",
+					"pattern": "\\[",
+					"end_offset": 0,
+					"start_offset": 1,
+					"strip": "true",
+					"next_state": "PID State"
+				}
+			]
+		},
+		{
+			"name": "PID State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "pid",
+				"data": "always",
+				"atomic": "true"
+			},
+			"transitions": 
+			[
+				{
+					"name": "PID to Mach Port Transition",
+					"pattern": ":",
+					"end_offset": 0,
+					"start_offset": 1,
+					"strip": "true",
+					"next_state": "Mach Port State"
+				}
+			]
+		},
+		{
+			"name": "Mach Port State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "mach_port",
+				"data": "always",
+				"atomic": "true"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Mach Port to Msg Transition",
+					"pattern": "\\]",
+					"end_offset": 0,
+					"start_offset": 2,
+					"strip": "true",
+					"next_state": "Msg State"
+				}
+			]
+		},
+		{
+			"name": "Msg State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "msg",
+				"data": "sometimes",
+				"atomic": "true"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Msg to End Transition",
+					"pattern": "EOS",
+					"end_offset": 0,
+					"start_offset": 0,
+					"strip": "true",
+					"next_state": "end"
+				}
+			]
+		},
+		{
+			"name": "Inner Datetime State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "datetime",
+				"data": "never",
+				"atomic": "false"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Inner Datetime to Year Transition",
+					"pattern": ".",
+					"end_offset": 0,
+					"start_offset": 1,
+					"strip": "true",
+					"next_state": "Year State"
+				}
+			]
+		},
+		{
+			"name": "Year State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "year",
+				"data": "always",
+				"atomic": "true"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Year to Month Transition",
+					"pattern": "-",
+					"end_offset": 0,
+					"start_offset": 1,
+					"strip": "true",
+					"next_state": "Month State"
+				}
+			]
+		},
+		{
+			"name": "Month State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "month",
+				"data": "always",
+				"atomic": "true"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Month to Day Transition",
+					"pattern": "-",
+					"end_offset": 0,
+					"start_offset": 1,
+					"strip": "true",
+					"next_state": "Day State"
+				}
+			]
+		},
+		{
+			"name": "Day State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "day",
+				"data": "always",
+				"atomic": "true"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Day to Hour Transition",
+					"pattern": "\\s+",
+					"end_offset": 0,
+					"start_offset": 1,
+					"strip": "true",
+					"next_state": "Hour State"
+				}
+			]
+		},
+		{
+			"name": "Hour State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "hour",
+				"data": "always",
+				"atomic": "true"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Hour to Minute Transition",
+					"pattern": ":",
+					"end_offset": 0,
+					"start_offset": 1,
+					"strip": "false",
+					"next_state": "Minute State"
+				}
+			]
+		},
+		{
+			"name": "Minute State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "minute",
+				"data": "always",
+				"atomic": "true"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Minute to Second Transition",
+					"pattern": ":",
+					"end_offset": 0,
+					"start_offset": 1,
+					"strip": "false",
+					"next_state": "Second State"
+				}
+			]
+		},
+		{
+			"name": "Second State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "second",
+				"data": "always",
+				"atomic": "true"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Second to Millisecond Transition",
+					"pattern": "\\.",
+					"end_offset": 0,
+					"start_offset": 1,
+					"strip": "false",
+					"next_state": "Millisecond State"
+				}
+			]
+		},
+		{
+			"name": "Millisecond State",
+			"final_state": "false",
+			"token": 
+			{
+				"data_type": "millisecond",
+				"data": "always",
+				"atomic": "true"
+			},
+			"transitions": 
+			[
+				{
+					"name": "Millisecond to End Transition",
+					"pattern": "EOS",
+					"end_offset": 0,
+					"start_offset": 0,
+					"strip": "false",
+					"next_state": "end"
+				}
+			]
+		}
+	],
+
+	"parsers":
+	[
+		{
+			"name": "Event Parser",
+			"parser_type": "event",
+			"parser_class": "Parser",
+			"root": "true",
+			"sub_parsers": [ "datetime", "source", "pid", "mach_port", "msg" ],
+			"token_names": [],
+			"acceptable_values": []
+		},
+		{
+			"name": "Datetime Parser",
+			"parser_type": "datetime",
+			"parser_class": "DatetimeParser",
+			"root": "false",
+			"sub_parsers": [],
+			"token_names": [ "year", "month", "day", "hour", "minute", "second", "millisecond" ],
+			"acceptable_values": []
+		},
+		{
+			"name": "Source Parser",
+			"parser_type": "source",
+			"parser_class": "StrParser",
+			"root": "false",
+			"sub_parsers": [],
+			"token_names": ["source"],
+			"acceptable_values": []
+		},
+		{
+			"name": "PID Parser",
+			"parser_type": "pid",
+			"parser_class": "IntParser",
+			"root": "false",
+			"sub_parsers": [],
+			"token_names": ["pid"],
+			"acceptable_values": []
+		},
+		{
+			"name": "Mach Port Parser",
+			"parser_type": "mach_port",
+			"parser_class": "StrParser",
+			"root": "false",
+			"sub_parsers": [],
+			"token_names": ["mach_port"],
+			"acceptable_values": []
+		},
+		{
+			"name": "Msg Parser",
+			"parser_type": "msg",
+			"parser_class": "StrParser",
+			"root": "false",
+			"sub_parsers": [],
+			"token_names": ["msg"],
+			"acceptable_values": []
+		}
+	]
+}

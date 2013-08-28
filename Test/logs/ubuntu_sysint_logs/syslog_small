@@ -16,14 +16,16 @@ Jul 11 09:51:28 ubuntu NetworkManager[887]: <info> modem-manager is now availabl
 Jul 11 09:51:29 ubuntu NetworkManager[887]: <info> monitoring kernel firmware directory '/lib/firmware'.
 Jul 11 09:51:20 ubuntu NetworkManager[887]: <info> WiFi hardware radio set enabled
 Jul 11 09:51:21 ubuntu NetworkManager[887]: <info> WiFi enabled by radio killswitch; enabled by state file
-Jul 11 09:51:22 ubuntu NetworkManager[887]: <error> [1373550717.998911] [nm-dns-dnsmasq.c:402] update(): dnsmasq owner not found on bus: Could not get owner of name 'org.freedesktop.NetworkManager.dnsmasq': no such name
-Jul 11 09:51:23 ubuntu NetworkManager[887]: <warn> DNS: plugin dnsmasq update failed
-Jul 11 09:51:24 ubuntu NetworkManager[887]: <info> Writing DNS information to /sbin/resolvconf
-Jul 11 09:51:25 ubuntu dbus[501]: [system] Successfully activated service 'org.freedesktop.ColorManager'
-Jul 11 09:51:26 ubuntu colord: Profile added: icc-0bd9f292ce7882699e93ff844071783d
-Jul 11 09:51:27 ubuntu colord: Profile added: icc-adb5ebe2a14b98599a170cd3ab54fe76
-Jul 11 11:35:28  dbus[501]: last message repeated 9 times
-Jul 11 11:37:29 ubuntu kernel: [    0.000000] Initializing cgroup subsys cpuset
-Jul 11 11:37:29 ubuntu kernel: [    0.000000] Initializing cgroup subsys cpu
+Jul 11 09:51:22 ubuntu dhclient: 
+Jul 11 09:51:23 ubuntu dhclient: For info, please visit https://www.isc.org/software/dhcp/
+Jul 11 09:51:24 ubuntu NetworkManager[887]: <error> [1373550717.998911] [nm-dns-dnsmasq.c:402] update(): dnsmasq owner not found on bus: Could not get owner of name 'org.freedesktop.NetworkManager.dnsmasq': no such name
+Jul 11 09:51:25 ubuntu NetworkManager[887]: <warn> DNS: plugin dnsmasq update failed
+Jul 11 09:51:26 ubuntu NetworkManager[887]: <info> Writing DNS information to /sbin/resolvconf
+Jul 11 09:51:27 ubuntu dbus[501]: [system] Successfully activated service 'org.freedesktop.ColorManager'
+Jul 11 09:51:28 ubuntu colord: Profile added: icc-0bd9f292ce7882699e93ff844071783d
+Jul 11 09:51:29 ubuntu colord: Profile added: icc-adb5ebe2a14b98599a170cd3ab54fe76
+Jul 11 11:35:30  dbus[501]: last message repeated 9 times
+Jul 11 11:37:31 ubuntu kernel: [    0.000000] Initializing cgroup subsys cpuset
+Jul 11 11:37:32 ubuntu kernel: [    0.000000] Initializing cgroup subsys cpu
 
 
